@@ -1,0 +1,45 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #efefef;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+nav {
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: white;
+}
+
+main {
+    flex: 1 0 auto;
+  }
+
+a {
+  color: #ef6c00;
+}
+
+.nav-wrapper a {
+	color: #ef6c00;
+}
+
+.color-accent {
+	color: #ef6c00
+}
+
+.no-margin-top {
+	margin-top: 0 !important;
+}
+
+.no-margin-bot {
+	margin-bottom: 0 !important;
+}
+
+.min-padding {
+	padding: 10px 0 10px 0 !important;
+}
+
+.card-content {
+	padding: 12px !important;
+}
