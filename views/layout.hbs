@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buddies</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Buddies</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#">About</a></li>
+          <li><a href="/services/new">Create Listing</a></li>
+          {{#if currentUser}}
+          <li><a href="/logout">Logout</a></li>
+          {{else}}
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Sign Up</a></li>
+          {{/if}}
+          <li><a><i class="material-icons">language</i></a></li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="card-panel min-padding">
+          <div class="row center no-margin-bot">
+            <div class="col s3">
+              <a href="/">Home</a>
+            </div>
+            <div class="col s3">
+              <a href="#">Recommended</a>
+            </div>
+            <div class="col s3">
+              <a href="#">Requests</a>
+            </div>
+            <div class="col s3">
+              <a href="#">Support</a>
+            </div>
+          </div>
+        </div>
+        {{#if message.negative}}
+          <div class="ui negative message center">
+            {{# each message.negative}}
+            <div class="header">
+              {{this}}
+            </div>
+            {{/each}}
+          </div>
+        {{/if}}
+        {{#if message.success}}
+          <div class="ui success message center">
+            {{# each message.success}}
+            <div class="header">
+              {{this}}
+            </div>
+            {{/each}}
+          </div>
+        {{/if}}
+        {{{body}}}
+      </div>
+    </main>
+    <div class="footer">
+      <div class="container center">
+      © 2018 Ingroup Worldwide
+      <a href="#!">Created by Anqi Hu, Johnny Sang, and Terence Mangram.</a>
+      </div>
+    </div>
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
+</html>
