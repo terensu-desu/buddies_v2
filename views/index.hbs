@@ -1,0 +1,92 @@
+<div class="row">
+	<div class="col m12 l6">
+		<div class="card-panel">
+		<h4>Requests</h4>
+		<div class="row">
+			{{# each requestServices }}
+		  <div class="col m12 l6">
+		    <div class="card">
+		    	<a href="{{this.url}}">
+			      <div class="card-image">
+			        <img src="{{this.image}}">
+			      </div>
+			      <div class="card-content">
+			      	<p class="black-text">{{this.meta}}</p>
+			      	<span class="card-title">{{this.title}}</span>
+			      	<p class="black-text">¥{{this.price}} per person</p>
+			      	<p class="black-text">{{this.rating}}--RATING HERE--</p>
+			      </div>
+		      </a>
+		    </div>
+		  </div>
+			{{/ each }}
+			<a href="#" class="btn right orange darken-3">Browse more</a>
+		</div>
+		</div>
+	</div>
+	<div class="col m12 l6">
+		<div class="card-panel">
+		<h4>Support</h4>
+		<div class="row">
+			{{# each supportServices }}
+		  <div class="col m12 l6">
+		    <div class="card">
+		    	<a href="{{this.url}}">
+			      <div class="card-image">
+			        <img src="{{this.image}}">
+			      </div>
+			      <div class="card-content">
+			      	<p class="black-text">{{this.meta}}</p>
+			      	<span class="card-title">{{this.title}}</span>
+			      	<p class="black-text">¥{{this.price}} per person</p>
+			      	<p class="black-text">{{this.rating}}--RATING HERE--</p>
+			      </div>
+		      </a>
+		    </div>
+		  </div>
+			{{/ each }}
+			<a href="#" class="btn right orange darken-3">Browse more</a>
+		</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col s12">
+		<div class="center">
+			<h4>Buddiesは海外から来た人と現地のつなげwin-winを作るサービスです。</h4>
+			<div class="divider"></div>
+			<img src="https://i.imgur.com/4TCm4Ec.png" alt="Service overview" class="responsive-img" />
+			<div class="divider"></div>
+			<h4>安心してご利用していただくための取り組み</h4>
+			<div class="row">
+				<div class="col s4">
+					<div class="center">
+						<i class="material-icons large color-accent">rate_review</i>
+						<h5>レビュー評価</h5>
+						<p>サービスが完了した後、利用者と提供者双方がお互いにレビューする制度を設けています。5 段階評価制度を導入しております。評価とコメントがプロフィールに表示されるため、サービスを利用する前にそれぞれの評価を確認できます。</p>
+					</div>
+				</div>
+				<div class="col s4">
+					<div class="center">
+						<i class="material-icons large color-accent">perm_identity</i>
+						<h5>ID認証</h5>
+						<p>本人確認書（パスポート、運転免許証など）を提出していただき、ID認証をさせていただいています。任意で電話確認も実施しており、認証マークをつけております。ユーザーの信頼度を確認できるようになっております。</p>
+					</div>
+				</div>
+				<div class="col s4">
+					<div class="center">
+						<i class="material-icons large color-accent">remove_red_eye</i>
+						<h5>パトロール</h5>
+						<p>ユーザー同士での取引内容、メッセージ、サービスに不適切なものがないかBuddies事務局のカスタマーサポートがパトロールを行っております。万が一、トラブルや不適切な取引があった場合は、こちらで適当な処置をさせていただいております。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col s8 offset-s2">
+		<!-- <PreRegisterForm /> -->
+	</div>
+</div>
