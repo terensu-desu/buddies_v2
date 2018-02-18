@@ -42,6 +42,7 @@ app.use(require('express-session')({
 	saveUninitialized: false // required
 }));
 app.use(flash());
+var port = process.env.PORT || 3000;
 
 // PASSPORT CONFIG
 app.use(passport.initialize());
@@ -75,4 +76,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(port, function() {
+  console.log("Buddies is now running and listening on port: " + port);
+});
