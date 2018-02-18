@@ -3,8 +3,11 @@ var bcrypt = require("bcrypt-nodejs");
 var passportLocalMongoose = require("passport-local-mongoose");
 
 var userSchema = new mongoose.Schema({
+	name: String,
 	email: {type: String, required: true},
 	password: {type: String, required: true},
+	image: String,
+	about_profile: String,
 });
 
 userSchema.methods.encryptPassword = function(password) {
