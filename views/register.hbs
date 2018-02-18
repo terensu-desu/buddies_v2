@@ -14,6 +14,22 @@
           <label for="password">Password</label>
         </div>
       </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="name" id="name" type="text">
+          <label for="name">Your name</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="image" id="image" type="text">
+          <label for="image">Profile image</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="about_profile" id="about_profile" type="text">
+          <label for="about_profile">Tell us about yourself</label>
+        </div>
+      </div>
       <input type="hidden" name="_csrf" value="{{csrfToken}}">
       <button class="btn orange darken-4" type="submit">Submit</button>
     </div>
