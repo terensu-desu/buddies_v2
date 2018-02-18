@@ -21,6 +21,7 @@ var services = require('./routes/services');
 
 var app = express();
 var url = process.env.DATABASEURL || "mongodb://localhost/buddies";
+console.log(url);
 mongoose.connect(url);
 require("./config/passport");
 // view engine setup
