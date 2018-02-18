@@ -2,18 +2,29 @@ var mongoose = require("mongoose");
 
 var serviceSchema = new mongoose.Schema({
 	title: String,
+	headline: String,
 	image: String,
+	location: String,
+	total_time: String,
+	memo: String,
+	language: String,
 	description: String,
+	provided_items: String,
+	guest_options: String,
+	notes: String,
+	location_notes: String,
 	price: String,
 	serviceType: String,
 	category: String,
-	subcategory: String
+	subcategory: String,
 	author: {
 		id: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User"
 		},
-		user: String
+		user: String,
+		image: String,
+		about_profile: String
 	},
 	reviews: [
 		{
