@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
+var Service = require("../models/service");
 var User = require('../models/user');
 
 var csrfProtection = csrf();
@@ -9,75 +10,13 @@ router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	var requestServices = [
-		{
-			title: "Lorem Ipsum",
-			image: "https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5add0b58e13b226e807f96ca21ec30b4&auto=format&fit=crop&w=1350&q=80",
-			url: "#",
-			meta: "Ipsum Lorem - Loremville",
-			price: 54,
-			rating: ""
-		},
-		{
-			title: "Lorem Ipsum",
-			image: "https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5add0b58e13b226e807f96ca21ec30b4&auto=format&fit=crop&w=1350&q=80",
-			url: "#",
-			meta: "Ipsum Lorem - Loremville",
-			price: 54,
-			rating: ""
-		},
-		{
-			title: "Lorem Ipsum",
-			image: "https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5add0b58e13b226e807f96ca21ec30b4&auto=format&fit=crop&w=1350&q=80",
-			url: "#",
-			meta: "Ipsum Lorem - Loremville",
-			price: 54,
-			rating: ""
-		},
-		{
-			title: "Lorem Ipsum",
-			image: "https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5add0b58e13b226e807f96ca21ec30b4&auto=format&fit=crop&w=1350&q=80",
-			url: "#",
-			meta: "Ipsum Lorem - Loremville",
-			price: 54,
-			rating: ""
-		},
-	];
-	var supportServices = [
-		{
-			title: "Lorem Ipsum",
-			image: "https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5add0b58e13b226e807f96ca21ec30b4&auto=format&fit=crop&w=1350&q=80",
-			url: "#",
-			meta: "Ipsum Lorem - Loremville",
-			price: 54,
-			rating: ""
-		},
-		{
-			title: "Lorem Ipsum",
-			image: "https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5add0b58e13b226e807f96ca21ec30b4&auto=format&fit=crop&w=1350&q=80",
-			url: "#",
-			meta: "Ipsum Lorem - Loremville",
-			price: 54,
-			rating: ""
-		},
-		{
-			title: "Lorem Ipsum",
-			image: "https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5add0b58e13b226e807f96ca21ec30b4&auto=format&fit=crop&w=1350&q=80",
-			url: "#",
-			meta: "Ipsum Lorem - Loremville",
-			price: 54,
-			rating: ""
-		},
-		{
-			title: "Lorem Ipsum",
-			image: "https://images.unsplash.com/photo-1517713982677-4b66332f98de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5add0b58e13b226e807f96ca21ec30b4&auto=format&fit=crop&w=1350&q=80",
-			url: "#",
-			meta: "Ipsum Lorem - Loremville",
-			price: 54,
-			rating: ""
-		},
-	];
-  res.render('index', { requestServices: requestServices, supportServices: supportServices, csrfToken: req.csrfToken() });
+	Service.find({}, function(err, services) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.render('index', {requestServices: services.slice(0,4), supportServices: services.slice(0,4), csrfToken: req.csrfToken()});
+		}
+	})
 });
 
 // GET login page
@@ -99,7 +38,7 @@ router.get("/register", function(req, res) {
 
 // CREATE User
 router.post("/register", passport.authenticate("local.register", {
-	successRedirect: "index",
+	successRedirect: "/",
 	failureRedirect: "/register",
 	failureFlash: true
 }));
