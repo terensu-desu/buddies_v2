@@ -6,6 +6,9 @@ var Service = require("../models/service");
 var middleware = require("../middleware");
 var { isLoggedIn } = middleware;
 
+var csrfProtection = csrf();
+router.use(csrfProtection);
+
 // INDEX SHOW ALL
 router.get("/", function(req, res) {
 	res.render("services/index");
@@ -13,23 +16,34 @@ router.get("/", function(req, res) {
 
 // NEW FORM
 router.get("/new", isLoggedIn, function(req, res) {
-	res.render("services/new");
+	res.render("services/new", {csrfToken: req.csrfToken()});
 });
 
 // CREATE
 router.post("/", isLoggedIn, function(req, res) {
 	var pendingNewService = {
 		title: req.body.title,
+		headline: req.body.headline,
+		location: req.body.location,
+		memo: req.body.memo,
 		image: req.body.image,
 		price: req.body.price,
+		total_time: req.body.total_time,
+		language: req.body.language,
 		description: req.body.description,
-		id: req.user._id,
-		user: req.user.email
+		provided_items: req.body.provided_items,
+		guest_options: req.body.guest_options,
+		notes: req.body.notes,
+		location_notes: req.body.location_notes,
+		serviceType: req.body.serviceType,
+		category: req.body.category,
+		author: {
+			id: req.user._id,
+			user: req.user.name,
+			image: req.user.image,
+			about_profile: req.user.about_profile
+		}
 	}
-	/*req.body.service.author = {
-		id: req.user._id,
-		user: req.user.email
-	};*/
 	Service.create(pendingNewService, function(err, newService) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
@@ -60,14 +74,31 @@ router.get("/:id/edit", function(req, res) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
 			res.redirect("back");
 		} else {
-			res.render("services/edit", {service: foundService});
+			res.render("services/edit", {service: foundService, csrfToken: req.csrfToken()});
 		}
 	});
 });
 
 // UPDATE
 router.put("/:id", function(req, res) {
-	Service.findByIdAndUpdate(req.params.id, req.body.service, function(err, updatedService) {
+	var editedService = {
+		title: req.body.title,
+		headline: req.body.headline,
+		location: req.body.location,
+		memo: req.body.memo,
+		image: req.body.image,
+		price: req.body.price,
+		total_time: req.body.total_time,
+		language: req.body.language,
+		description: req.body.description,
+		provided_items: req.body.provided_items,
+		guest_options: req.body.guest_options,
+		notes: req.body.notes,
+		location_notes: req.body.location_notes,
+		serviceType: req.body.serviceType,
+		category: req.body.category
+	}
+	Service.findByIdAndUpdate(req.params.id, editedService, function(err, updatedService) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
 			res.redirect("back");
