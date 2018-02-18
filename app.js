@@ -37,10 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride("_method"));
 
 app.use(require('express-session')({
-  cookie:{
-    secure: true,
-    maxAge:60000
-  },
 	secret: "Farz is the best",
 	resave: false, // required
 	saveUninitialized: false // required
@@ -50,9 +46,6 @@ app.use(flash());
 // PASSPORT CONFIG
 app.use(passport.initialize());
 app.use(passport.session());
-/*passport.use(new LocalStrategy(User.authenticate())); // Comes from passport-local-mongoose, same with next two
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());*/
 app.use(function(req, res, next) {
 	res.locals.currentUser = req.user;
 	res.locals.message = req.flash();
