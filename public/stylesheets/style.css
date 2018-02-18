@@ -40,6 +40,23 @@ a {
 	padding: 10px 0 10px 0 !important;
 }
 
+.card-title {
+	font-size: 16px !important;
+}
+
 .card-content {
 	padding: 12px !important;
+}
+
+.host-img {
+	max-height: 75px;
+	margin-top: 45px;
+}
+
+.fixed-img {
+	max-height: 183px !important;
+}
+
+.browse-more {
+	margin-right: 20px;
 }
