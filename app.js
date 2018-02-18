@@ -37,6 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride("_method"));
 
 app.use(require('express-session')({
+  cookie:{
+    secure: true,
+    maxAge:60000
+  },
 	secret: "Farz is the best",
 	resave: false, // required
 	saveUninitialized: false // required
