@@ -1,0 +1,97 @@
+<% layout('layout') -%>
+<div class="row white">
+  <div class="col s12 m6 l7">
+    <div class="row">
+      <div class="col s10">
+        <h4><%= service.title %></h4>
+        <p><%= service.headline %></p>
+        <p>Hosted by <%= service.author.user %></p>
+      </div>
+      <div class="col s2">
+        <a href="#" class="right-align">
+          <img src="https://a0.muscache.com/im/pictures/user/36d9a122-83f4-4885-bc20-c232baf95dc3.jpg?aki_policy=profile_x_medium" 
+             class="circle host-img" alt="host image">
+        </a>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p><i class="material-icons left">location_on</i><%= service.location %></p>
+    <p><i class="material-icons left">access_time</i><%= service.total_time %> total</p>
+    <p><i class="material-icons left">note</i><%= service.memo %></p>
+    <p><i class="material-icons left">forum</i><%= service.language %></p>
+    <div class="divider"></div>
+    <h5>About your host, <%= service.author.user %></h5>
+    <p><%= service.author.about_profile %></p>
+    <div class="divider"></div>
+    <h5>What we'll do</h5>
+    <p><%= service.description %></p>
+    <div class="divider"></div>
+    <h5>What we'll provide</h5>
+    <p><%= service.provided_items %></p>
+    <div class="divider"></div>
+    <h5>Who can come</h5>
+    <p><%= service.guest_options %></p>
+    <h5>Notes</h5>
+    <p><%= service.notes %></p>
+    <div class="divider"></div>
+    <h5>Where we'll be</h5>
+    <p><%= service.location_notes %></p>
+    <p>Map goes here</p>
+    <h5>Upcoming availability</h5>
+    <!-- reviews -->
+    <% if(service.reviews) { %>
+    <h5>Reviews</h5>
+    <ul class="collection">
+      <% service.reviews.forEach(function(review) { %>
+      <li class="collection-item avatar">
+        <img src="<%= review.author.profile_image %>" alt="" class="circle">
+        <span class="title"><%= review.author.name %></span>
+        <span class="date"><%= review.date %></span>
+        <p><%= review.comment %></p>
+      </li>
+      <div class="divider"></div>
+      <% }) %>
+    </ul>
+    <% } %>
+  </div>
+  <div class="col m6 l5">
+    <div id="show-card" class="card">
+      <div class="card-image">
+        <img src="<%= service.image %>">
+      </div>
+      <div class="card-content">
+        <table class="centered">
+          <tbody>
+            <tr>
+              <td>¥<%= service.price %></span> per person</td>
+              <td rowspan="2"><button class="btn btn-large center orange darken-4">See dates</button></td>
+            </tr>
+            <tr>
+              <td><%= service.rating %>--RATING HERE--</td>
+            </tr>
+            <tr>
+              <td>
+                <p>--SOCIAL-- --SAVE--</p>
+              </td>
+              <td>
+                <p>Save to list</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <% if(currentUser && service.author.id.equals(currentUser._id)) { %>
+    <div class="row center">
+      <div class="col s3 offset-s3">
+        <a href="/services/<%= service._id %>/edit" class="btn orange">Edit</a>
+      </div>
+      <div class="col s3">
+        <form action="/services/<%= service._id %>?_method=DELETE" method="POST">
+          <button class="btn red darken-2">Delete</button>
+        </form>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
