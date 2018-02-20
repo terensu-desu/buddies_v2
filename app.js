@@ -10,6 +10,8 @@ var methodOverride = require('method-override');
 var LocalStrategy = require('passport-local');
 var flash = require('connect-flash');
 var validator = require('express-validator');
+var ejs = require('ejs');
+var engine = require('ejs-mate');
 
 var Service = require('./models/service');
 var Review = require('./models/review');
@@ -24,10 +26,11 @@ var url = process.env.DATABASEURL || "mongodb://localhost/buddies";
 mongoose.connect(url);
 require("./config/passport");
 // view engine setup
+app.engine("ejs", engine);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
