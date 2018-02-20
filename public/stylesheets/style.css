@@ -28,6 +28,10 @@ a {
 	color: #ef6c00
 }
 
+.btn-accent {
+	background-color: #ef6c00;
+}
+
 .no-margin-top {
 	margin-top: 0 !important;
 }
