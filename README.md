@@ -23,3 +23,4 @@ CREATE		/dogs/:id/comments				POST
 ##### Bugs solved
 
 Reference middleware in route calls, don't call them i.e. sumFunc().
+Heroku needs to have the process.env.DATABASEURL specified for the app on settings page! Don't forget.
