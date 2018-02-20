@@ -4,7 +4,7 @@ var csrf = require('csurf');
 var passport = require('passport');
 var Service = require("../models/service");
 var middleware = require("../middleware");
-var { isLoggedIn } = middleware;
+var { isLoggedIn, checkListingOwnerShip } = middleware;
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
@@ -68,7 +68,7 @@ router.get("/:id", function(req, res) {
 });
 
 // EDIT
-router.get("/:id/edit", function(req, res) {
+router.get("/:id/edit", checkListingOwnerShip, function(req, res) {
 	Service.findById(req.params.id, function(err, foundService) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
@@ -80,7 +80,7 @@ router.get("/:id/edit", function(req, res) {
 });
 
 // UPDATE
-router.put("/:id", function(req, res) {
+router.put("/:id", checkListingOwnerShip, function(req, res) {
 	var editedService = {
 		title: req.body.title,
 		headline: req.body.headline,
