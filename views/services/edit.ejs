@@ -1,0 +1,108 @@
+<% layout('layout') -%>
+<h4 class="center">Edit your listing</h4>
+<div class="row">
+  <form class="col s6 offset-s3" action="/services/<%= service._id %>?_method=PUT" method="POST">
+    <div class="card-panel">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="title" type="text" name="title" class="validate" value="<%= service.title %>">
+          <label for="title">Service Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input id="headline" type="text" name="headline" class="validate" maxlength="20" value="<%= service.headline %>">
+          <label for="headline">Headline (20 characters)</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="location" type="text" name="location" class="validate" value="<%= service.location %>">
+          <label for="location">Location</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="memo" type="text" name="memo" class="validate" maxlength="20" value="<%= service.memo %>">
+          <label for="memo">Memo (20 characters)</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="image" type="text" name="image" class="validate" value="<%= service.image %>">
+          <label for="image">Promotional Image</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input id="price" type="number" name="price" class="validate" min="1" step="1" value="<%= service.price %>">
+          <label for="price">Price in Yen</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="total_time" type="number" name="total_time" class="validate" min="1" step="1" value="<%= service.total_time %>">
+          <label for="total_time">Total Time</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="language" type="text" name="language" class="validate" value="<%= service.language %>">
+          <label for="language">Language</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="description" type="text" name="description" class="validate" value="<%= service.description %>">
+          <label for="description">Description</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="provided_items" type="text" name="provided_items" class="validate" value="<%= service.provided_items %>">
+          <label for="provided_items">Provided items</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="guest_options" type="text" name="guest_options" class="validate" value="<%= service.guest_options %>">
+          <label for="guest_options">Guest Options/Restrictions</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="notes" type="text" name="notes" class="validate" value="<%= service.notes %>">
+          <label for="notes">Detailed notes</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="location_notes" type="text" name="location_notes" class="validate" value="<%= service.location_notes %>">
+          <label for="location_notes">Location notes</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6">
+          Service type:
+          <p>
+            <label>
+              <input class="with-gap" name="serviceType" type="radio" />
+              <span>Request</span>
+            </label>
+            <label>
+              <input class="with-gap" name="serviceType" type="radio" />
+              <span>Support</span>
+            </label>
+          </p>
+        </div>
+        <div class="col s6">
+          Category:
+          <p>
+            <label>
+              <input class="with-gap" name="category" type="radio" />
+              <span>Buddies</span>
+            </label>
+            <label>
+              <input class="with-gap" name="category" type="radio" />
+              <span>Life</span>
+            </label>
+            <label>
+              <input class="with-gap" name="category" type="radio" />
+              <span>Events</span>
+            </label>
+          </p>
+        </div>
+      </div>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button class="btn orange darken-4" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
