@@ -8,6 +8,15 @@ var User = require('../models/user');
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
+//temp route to browse page
+router.get("/browse", function(req, res) {
+	res.render("browse/index");
+});
+//temp route to browse page
+router.get("/recommended", function(req, res) {
+	res.render("browse/recommended");
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	Service.find({}, function(err, services) {
