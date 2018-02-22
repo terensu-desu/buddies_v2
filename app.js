@@ -58,7 +58,7 @@ app.use(function(req, res, next) {
 });
 
 // ROUTES
-app.use("/browse", browse);
+//app.use("/browse", browse);
 app.use("/services", services);
 app.use('/users', users);
 app.use(index);

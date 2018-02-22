@@ -1,4 +1,4 @@
-var express = require('express');
+/*var express = require('express');
 var router = express.Router();
 var Service = require("../models/service");
 
@@ -37,4 +37,4 @@ router.get("/:type", function(req, res) {
 	});
 });
 
-module.exports = router;
+module.exports = router;*/
