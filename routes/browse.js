@@ -12,7 +12,7 @@ router.get("/:type", function(req, res) {
 	Service.find({"serviceType": req.params.type}, function(err, foundServices) {
 		if(err || foundServices === undefined) {
 			req.flash("negative", "Sorry, an error occurred. Please try again.")
-			res.redirect("back");
+			return res.redirect("back");
 		} else {
 			var categories = {};
 			categories.buddies = ["交通","市役所","学校","病院","銀行・金融","子ども","趣味","生活相談","料理","食事","美容・ファッション","その他"];
