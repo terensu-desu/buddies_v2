@@ -8,17 +8,30 @@
         <p>Hosted by <%= service.author.user %></p>
       </div>
       <div class="col s2">
+        <!-- Eventually link this to a user profile -->
         <a href="#" class="right-align">
-          <img src="https://a0.muscache.com/im/pictures/user/36d9a122-83f4-4885-bc20-c232baf95dc3.jpg?aki_policy=profile_x_medium" 
+          <img src="<%= service.author.image %>" 
              class="circle host-img" alt="host image">
         </a>
       </div>
     </div>
     <div class="divider"></div>
-    <p><i class="material-icons left">location_on</i><%= service.location %></p>
-    <p><i class="material-icons left">access_time</i><%= service.total_time %> total</p>
-    <p><i class="material-icons left">note</i><%= service.memo %></p>
-    <p><i class="material-icons left">forum</i><%= service.language %></p>
+    <p class="icon-adjacent-text">
+      <i class="material-icons left">location_on</i>
+      <%= service.location %>
+    </p>
+    <p class="icon-adjacent-text">
+      <i class="material-icons left">access_time</i>
+      <%= service.total_time %> hours
+    </p>
+    <p class="icon-adjacent-text">
+      <i class="material-icons left">note</i>
+      <%= service.memo || "N/A" %>
+    </p>
+    <p class="icon-adjacent-text">
+      <i class="material-icons left">forum</i>
+      <%= service.language %>
+    </p>
     <div class="divider"></div>
     <h5>About your host, <%= service.author.user %></h5>
     <p><%= service.author.about_profile %></p>
