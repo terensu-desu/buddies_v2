@@ -20,6 +20,7 @@ var User = require('./models/user');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var services = require('./routes/services');
+var browse = require('./routes/browse');
 
 var app = express();
 var url = process.env.DATABASEURL || "mongodb://localhost/buddies";
@@ -57,7 +58,8 @@ app.use(function(req, res, next) {
 });
 
 // ROUTES
-app.use("/services", services)
+app.use("/browse", browse);
+app.use("/services", services);
 app.use('/users', users);
 app.use(index);
 
