@@ -1,6 +1,6 @@
 # Buddies
 Buddies is a project designed around bringing a service to the web that helps foreigners live in Japan. This peer to peer service would connect individuals to other individuals who provide their skills and knowledge as a service.
-https://dashboard.heroku.com/apps/cryptic-reaches-16936
+https://agile-scrubland-23791.herokuapp.com/
 
 ### Terminal Commands Reference
 sudo service mongod start
