@@ -8,22 +8,22 @@ var User = require('../models/user');
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
-//temp route to browse page
-router.get("/browse", function(req, res) {
-	res.render("browse/index");
-});
-//temp route to browse page
-router.get("/recommended", function(req, res) {
-	res.render("browse/recommended");
-});
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	Service.find({}, function(err, services) {
+	Service.find({}, function(err, foundServices) {
 		if(err) {
 			console.log(err);
 		} else {
-			res.render('index', {requestServices: services.slice(0,4), supportServices: services.slice(0,4), csrfToken: req.csrfToken()});
+			var request = [];
+			var support = [];
+			for(var service of foundServices) {
+				if(service["serviceType"] === "request") {
+					request.push(service);
+				} else if(service["serviceType"] === "support") {
+					support.push(service);
+				}
+			}
+			res.render('index', {requestServices: request.slice(0,4), supportServices: support.slice(0,4), csrfToken: req.csrfToken()});
 		}
 	})
 });
