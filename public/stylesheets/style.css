@@ -18,6 +18,7 @@ main {
 
 a {
   color: #ef6c00;
+  transition: .5s;
 }
 
 .nav-wrapper a {
@@ -26,10 +27,6 @@ a {
 
 .color-accent {
 	color: #ef6c00
-}
-
-.btn-accent {
-	background-color: #ef6c00;
 }
 
 .no-margin-top {
@@ -43,7 +40,9 @@ a {
 .min-padding {
 	padding: 10px 0 10px 0 !important;
 }
-
+.card, .card-panel {
+	border-radius: 5px;
+}
 .card-title {
 	font-size: 16px !important;
 }
@@ -52,15 +51,25 @@ a {
 	padding: 12px !important;
 }
 
-.host-img {
-	max-height: 75px;
-	margin-top: 45px;
-}
-
 .fixed-img {
 	max-height: 183px !important;
 }
 
 .browse-more {
 	margin-right: 20px;
+}
+
+.host-img {
+	max-height: 75px;
+	margin-top: 45px;
+}
+
+.icon-adjacent-text {
+	line-height: 1.8;
+}
+
+#categories-filter li {
+	list-style-type: circle !important;
+	list-style-position: inside;
+	font-size: 1.2rem;
 }
