@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 					support.push(service);
 				}
 			}
-			res.render('index', {requestServices: request.slice(0,4), supportServices: support.slice(0,4), csrfToken: req.csrfToken()});
+			res.render('index', {requestServices: request.slice(0, 4), supportServices: support.slice(0, 4), csrfToken: req.csrfToken()});
 		}
 	})
 });
