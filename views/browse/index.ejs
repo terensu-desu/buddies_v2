@@ -15,142 +15,82 @@
 			<h4>Events</h4>
 		</div>
 	</div>
+	<hr/>
 	<div class="row">
 		<div class="col s3">
-			<ul>
-				<li>
-					<a href="#">Lorem</a>
-				</li>
-				<li>
-					<a href="#">Lorem</a>
-				</li>
-				<li>
-					<a href="#">Lorem</a>
-				</li>
-				<li>
-					<a href="#">Lorem</a>
-				</li>
-				<li>
-					<a href="#">Lorem</a>
-				</li>
-				<li>
-					<a href="#">Lorem</a>
-				</li>
+			<ul id="categories-filter">
+				<h5>Buddies</h5>
+				<% categories.buddies.map(function(category) { %>
+					<li>
+						<a href="#"><%= category %></a>
+					</li>
+				<% }) %>
+				<h5>Life</h5>
+				<% categories.life.map(function(category) { %>
+					<li>
+						<a href="#"><%= category %></a>
+					</li>
+				<% }) %>
+				<h5>Events</h5>
+				<% categories.events.map(function(category) { %>
+					<li>
+						<a href="#"><%= category %></a>
+					</li>
+				<% }) %>
 			</ul>
 		</div>
 		<div class="col s3">
-			<div class="card">
-				<a href="#">
+		<% services.buddies.map(function(service) { %>
+			<div class="card hoverable">
+				<a href="/services/<%= service._id %>">
 					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
+						<img src="<%= service.image %>" class="fixed-img" alt="preview">
 					</div>
 					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
+						<p class="black-text"><%= service.headline %> - <%= service.location %></p>
+						<span class="card-title"><%= service.title %></span>
+						<p class="black-text">¥<%= service.price %> per person</p>
+						<p class="black-text"><%= service.rating || "RATING HERE" %></p>
 					</div>
 				</a>
 			</div>
-			<div class="card">
-				<a href="#">
-					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
-					</div>
-					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
-					</div>
-				</a>
-			</div>
-			<div class="card">
-				<a href="#">
-					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
-					</div>
-					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
-					</div>
-				</a>
-			</div>
+		<% }) %>
 		</div>
+
 		<div class="col s3">
-			<div class="card">
-				<a href="#">
+		<% services.life.map(function(service) { %>
+			<div class="card hoverable">
+				<a href="/services/<%= service._id %>">
 					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
+						<img src="<%= service.image %>" class="fixed-img" alt="preview">
 					</div>
 					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
+						<p class="black-text"><%= service.headline %> - <%= service.location %></p>
+						<span class="card-title"><%= service.title %></span>
+						<p class="black-text">¥<%= service.price %> per person</p>
+						<p class="black-text"><%= service.rating || "RATING HERE" %></p>
 					</div>
 				</a>
 			</div>
-			<div class="card">
-				<a href="#">
-					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
-					</div>
-					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
-					</div>
-				</a>
-			</div>
-			<div class="card">
-				<a href="#">
-					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
-					</div>
-					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
-					</div>
-				</a>
-			</div>
+		<% }) %>
 		</div>
+
 		<div class="col s3">
-			<div class="card">
-				<a href="#">
+		<% services.events.map(function(service) { %>
+			<div class="card hoverable">
+				<a href="/services/<%= service._id %>">
 					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
+						<img src="<%= service.image %>" class="fixed-img" alt="preview">
 					</div>
 					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
+						<p class="black-text"><%= service.headline %> - <%= service.location %></p>
+						<span class="card-title"><%= service.title %></span>
+						<p class="black-text">¥<%= service.price %> per person</p>
+						<p class="black-text"><%= service.rating || "RATING HERE" %></p>
 					</div>
 				</a>
 			</div>
-			<div class="card">
-				<a href="#">
-					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
-					</div>
-					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
-					</div>
-				</a>
-			</div>
-			<div class="card">
-				<a href="#">
-					<div class="card-image">
-						<img src="https://i.imgur.com/XsrlVdD.jpg" class="fixed-img" alt="preview">
-					</div>
-					<div class="card-content">
-						<span class="card-title">Card Title</span>
-						<p>Greetings</p>
-						<p>Greetings</p>
-					</div>
-				</a>
-			</div>
+		<% }) %>
 		</div>
 	</div>
 </div>
