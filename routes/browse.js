@@ -1,10 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var csrf = require('csurf');
 var Service = require("../models/service");
-
-var csrfProtection = csrf();
-router.use(csrfProtection);
 
 // GET recommended, needs to be placed ABOVE "browse/:type" GET
 router.get("/recommended", function(req, res) {
