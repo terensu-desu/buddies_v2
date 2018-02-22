@@ -25,3 +25,4 @@ CREATE		/dogs/:id/comments				POST
 
 Reference middleware in route calls, don't call them i.e. sumFunc().
 Heroku needs to have the process.env.DATABASEURL specified for the app on settings page! Don't forget.
+Avoid merging because Heroku seems to have some kind of problem with it..
