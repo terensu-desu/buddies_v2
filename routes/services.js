@@ -62,7 +62,7 @@ router.get("/:id", function(req, res) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
 			res.redirect("back");
 		} else {
-			res.render("services/show", {service: foundService});
+			res.render("services/show", {service: foundService, csrfToken: req.csrfToken()});
 		}
 	});
 });
@@ -110,14 +110,14 @@ router.put("/:id", checkListingOwnerShip, function(req, res) {
 });
 
 // DESTROY CAMPGROUND
-router.delete("/:id", function(req, res) {
+router.delete("/:id", checkListingOwnerShip, function(req, res) {
 	Service.findByIdAndRemove(req.params.id, function(err) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
-			res.redirect("back");
+			res.redirect("/services/index");
 		} else {
 			req.flash("success", "Service listing successfully removed.");
-			res.redirect("/services");
+			res.redirect("/");
 		}
 	});
 });
