@@ -73,13 +73,3 @@ a {
 	list-style-position: inside;
 	font-size: 1.2rem;
 }
-
-.collection .collection-item.avatar .tertiary-content {
-	position: absolute;
-	top: 60px;
-	right: 16px;
-}
-
-.collection .collection-item.avatar p {
-	width: 80%;
-}
