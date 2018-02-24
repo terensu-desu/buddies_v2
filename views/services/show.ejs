@@ -101,6 +101,7 @@
       </div>
       <div class="col s3">
         <form action="/services/<%= service._id %>?_method=DELETE" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button class="btn red darken-2">Delete</button>
         </form>
       </div>

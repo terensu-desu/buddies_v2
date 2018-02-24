@@ -45,7 +45,7 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="description" type="text" name="description" class="validate">
+          <textarea id="description" name="description" class="materialize-textarea" required></textarea>
           <label for="description">Description</label>
         </div>
       </div>
@@ -74,11 +74,11 @@
           Service type:
           <p>
             <label>
-              <input class="with-gap" name="serviceType" type="radio" value="request" />
+              <input class="with-gap" name="serviceType" type="radio" value="request" required />
               <span>Request</span>
             </label>
             <label>
-              <input class="with-gap" name="serviceType" type="radio" value="support" />
+              <input class="with-gap" name="serviceType" type="radio" value="support" required />
               <span>Support</span>
             </label>
           </p>
@@ -87,15 +87,15 @@
           Category:
           <p>
             <label>
-              <input class="with-gap" name="category" type="radio" value="buddies" />
+              <input class="with-gap" name="category" type="radio" value="buddies" required />
               <span>Buddies</span>
             </label>
             <label>
-              <input class="with-gap" name="category" type="radio" value="life" />
+              <input class="with-gap" name="category" type="radio" value="life" required />
               <span>Life</span>
             </label>
             <label>
-              <input class="with-gap" name="category" type="radio" value="events" />
+              <input class="with-gap" name="category" type="radio" value="events" required />
               <span>Events</span>
             </label>
           </p>
