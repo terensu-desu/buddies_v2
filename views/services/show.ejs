@@ -43,7 +43,7 @@
     <p><%= service.provided_items %></p>
     <div class="divider"></div>
     <h5>Who can come</h5>
-    <p><%= service.guest_options %></p>
+    <p><%= service.guest_options || "Open to all" %></p>
     <h5>Notes</h5>
     <p><%= service.notes %></p>
     <div class="divider"></div>
@@ -52,21 +52,41 @@
     <p>Map goes here</p>
     <h5>Upcoming availability</h5>
     <!-- reviews -->
-    <% if(service.reviews) { %>
     <h5>Reviews</h5>
+    <div class="row center">
+      <a class="btn orange darken-4" href="/services/<%= service._id %>/reviews/new">Add a review</a>
+    </div>
+    <% if(service.reviews) { %>
     <ul class="collection">
-      <% service.reviews.forEach(function(review) { %>
+      <% service.reviews.map(function(review) { %>
       <li class="collection-item avatar">
-        <img src="<%= review.author.profile_image %>" alt="" class="circle">
-        <span class="title"><%= review.author.name %></span>
-        <span class="date"><%= review.date %></span>
-        <p><%= review.comment %></p>
+        <img src="<%= review.author.image %>" alt="user image" class="circle">
+        <span class="title"><%= review.author.user %></span>
+        <p><span class="date"><%= review.date %></span></p>
+        <p><%= review.text %></p>
+        <% if(currentUser && review.author.id.equals(currentUser._id)) { %>
+          <br/>
+          <div class="row">
+            <div class="col s2">
+              <a href="/services/<%= service._id %>/reviews/<%= review._id %>/edit" class="btn orange">Edit</a>
+            </div>
+            <div class="col s2">
+              <form action="/services/<%= service._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn red darken-2">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% } else { %>
+          <a class="secondary-content"><i class="material-icons">flag</i></a>
+        <% } %>
       </li>
-      <div class="divider"></div>
       <% }) %>
     </ul>
     <% } %>
+    <!-- end reviews -->
   </div>
+  <!-- info card -->
   <div class="col m6 l5">
     <div id="show-card" class="card">
       <div class="card-image">
