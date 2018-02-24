@@ -20,6 +20,7 @@ var User = require('./models/user');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var services = require('./routes/services');
+var reviews = require('./routes/reviews');
 var browse = require('./routes/browse');
 
 var app = express();
@@ -60,6 +61,7 @@ app.use(function(req, res, next) {
 // ROUTES
 app.use("/browse", browse);
 app.use("/services", services);
+app.use("/services/:id/reviews", reviews);
 app.use('/users', users);
 app.use(index);
 
