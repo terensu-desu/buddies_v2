@@ -4,7 +4,7 @@ var csrf = require('csurf');
 var passport = require('passport');
 var Service = require("../models/service");
 var middleware = require("../middleware");
-var { isLoggedIn, checkListingOwnerShip } = middleware;
+var { isLoggedIn, checkListingOwnership } = middleware;
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
@@ -68,7 +68,7 @@ router.get("/:id", function(req, res) {
 });
 
 // EDIT
-router.get("/:id/edit", checkListingOwnerShip, function(req, res) {
+router.get("/:id/edit", checkListingOwnership, function(req, res) {
 	Service.findById(req.params.id, function(err, foundService) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
@@ -80,7 +80,7 @@ router.get("/:id/edit", checkListingOwnerShip, function(req, res) {
 });
 
 // UPDATE
-router.put("/:id", checkListingOwnerShip, function(req, res) {
+router.put("/:id", checkListingOwnership, function(req, res) {
 	var editedService = {
 		title: req.body.title,
 		headline: req.body.headline,
@@ -110,7 +110,7 @@ router.put("/:id", checkListingOwnerShip, function(req, res) {
 });
 
 // DESTROY CAMPGROUND
-router.delete("/:id", checkListingOwnerShip, function(req, res) {
+router.delete("/:id", checkListingOwnership, function(req, res) {
 	Service.findByIdAndRemove(req.params.id, function(err) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
