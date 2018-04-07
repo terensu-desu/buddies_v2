@@ -14,16 +14,33 @@ router.get('/', function(req, res, next) {
 		if(err) {
 			console.log(err);
 		} else {
+			var chunkSize = 2;
 			var request = [];
+			var requestHelper = 0;
 			var support = [];
+			var supportHelper = 0;
 			for(var service of foundServices) {
 				if(service["serviceType"] === "request") {
-					request.push(service);
+					if(!request[requestHelper] || request[requestHelper].length < chunkSize) {
+						request[requestHelper].push(service);
+						//console.log("[REQUEST ARRAY 0]", request[0]);
+					} else {
+						requestHelper++
+						request[requestHelper].push(service);
+						//console.log("[REQUEST ARRAY 1]", request[1]);
+					}
 				} else if(service["serviceType"] === "support") {
-					support.push(service);
+					if(!support[supportHelper] || support[supportHelper].length < chunkSize) {
+						support[supportHelper].push(service);
+						//console.log("[SUPPORT ARRAY 0]", support[0]);
+					} else {
+						supportHelper++;
+						support[supportHelper].push(service);
+						//console.log("[SUPPORT ARRAY 1]", support[1]);
+					}
 				}
 			}
-			res.render('index', {requestServices: request.slice(0, 4), supportServices: support.slice(0, 4), csrfToken: req.csrfToken()});
+			res.render('index', {requestServices: request.slice(0, 2), supportServices: support.slice(0, 2), csrfToken: req.csrfToken()});
 		}
 	})
 });
