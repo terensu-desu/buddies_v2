@@ -37,6 +37,10 @@ a {
 	margin-bottom: 0 !important;
 }
 
+.hidden {
+	display: none !important;
+}
+
 .min-padding {
 	padding: 10px 0 10px 0 !important;
 }
