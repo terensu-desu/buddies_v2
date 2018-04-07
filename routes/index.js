@@ -16,31 +16,29 @@ router.get('/', function(req, res, next) {
 		} else {
 			var chunkSize = 2;
 			var request = [];
-			var requestHelper = 0;
+			var requestChunked = [];
 			var support = [];
-			var supportHelper = 0;
+			var supportChunked = [];
 			for(var service of foundServices) {
 				if(service["serviceType"] === "request") {
-					if(!request[requestHelper] || request[requestHelper].length < chunkSize) {
-						request[requestHelper].push(service);
-						//console.log("[REQUEST ARRAY 0]", request[0]);
-					} else {
-						requestHelper++
-						request[requestHelper].push(service);
-						//console.log("[REQUEST ARRAY 1]", request[1]);
-					}
+					request.push(service);
 				} else if(service["serviceType"] === "support") {
-					if(!support[supportHelper] || support[supportHelper].length < chunkSize) {
-						support[supportHelper].push(service);
-						//console.log("[SUPPORT ARRAY 0]", support[0]);
-					} else {
-						supportHelper++;
-						support[supportHelper].push(service);
-						//console.log("[SUPPORT ARRAY 1]", support[1]);
-					}
+					support.push(service);
 				}
 			}
-			res.render('index', {requestServices: request.slice(0, 2), supportServices: support.slice(0, 2), csrfToken: req.csrfToken()});
+			for(var i = 0; i < request.length; i += chunkSize) {
+				requestChunked.push(request.slice(i, i + chunkSize));
+			}
+			for (var j = 0; j < support.length; j+= chunkSize) {
+				supportChunked.push(support.slice(j, j + chunkSize));
+			}
+			res.render('index', 
+				{
+					requestServices: requestChunked.slice(0,2),
+					supportServices: supportChunked.slice(0,2),
+					csrfToken: req.csrfToken()
+				}
+			);
 		}
 	})
 });
