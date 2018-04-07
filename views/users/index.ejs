@@ -1,3 +1,5 @@
+<!-- Need to change service.* to user.* or something like that -->
+<!-- Put this pay layout on paper first, decide what to show and how -->
 <% layout('layout') -%>
 <div class="row white">
   <div class="col s12 m6 l7">
@@ -103,10 +105,15 @@
             </tr>
             <tr>
               <td>
-                <p>--SOCIAL-- --SAVE--</p>
+                <p>
+                  <a href="#"><i class="fab fa-facebook-square fa-3x"></i></a>
+                  <a href="#"><i class="fab fa-twitter-square fa-3x"></i></a>
+                  <a href="#"><i class="fab fa-google-plus-square fa-3x"></i></a>
+                </p>
               </td>
               <td>
-                <p>Save to list</p>
+                <a href="#" id="notSaved"><i class="far fa-heart fa-3x"></i></a>
+                <a href="#" class="hidden" id="isSaved"><i class="fas fa-heart fa-3x"></i></a>
               </td>
             </tr>
           </tbody>
