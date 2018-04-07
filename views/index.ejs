@@ -2,52 +2,60 @@
 <div class="row">
 	<div class="col m12 l6">
 		<div class="card-panel">
-		<h4>Featured Requests</h4>
-		<div class="row">
-			<% requestServices.map(function (service) { %>
-		  <div class="col m12 l6">
-		    <div class="card hoverable">
-		    	<a href="/services/<%= service._id %>">
-			      <div class="card-image">
-			        <img src="<%= service.image %>" class="fixed-img"/>
-			      </div>
-			      <div class="card-content">
-			      	<p class="black-text"><%= service.headline %> - <%= service.location %></p>
-			      	<span class="card-title truncate"><%= service.title %></span>
-			      	<p class="black-text">¥<%= service.price %> per person</p>
-			      	<p class="black-text"><%= service.rating || "RATING HERE" %></p>
-			      </div>
-		      </a>
-		    </div>
-		  </div>
+			<h4>Featured Requests</h4>
+			<% requestServices.map(function(subArray) { %>
+			<div class="row">
+				<% subArray.map(function(service) { %>
+				<div class="col s12 xl6">
+			    <div class="card hoverable">
+			    	<a href="/services/<%= service._id %>">
+				      <div class="card-image">
+				        <img src="<%= service.image %>" class="fixed-img"/>
+				      </div>
+				      <div class="card-content">
+				      	<p class="black-text"><%= service.headline %> - <%= service.location %></p>
+				      	<span class="card-title truncate"><%= service.title %></span>
+				      	<p class="black-text">¥<%= service.price %> per hour</p>
+				      	<p class="black-text"><%= service.rating || "RATING HERE" %></p>
+				      </div>
+			      </a>
+			    </div>
+			  </div>
+				<% }) %>
+			</div>
 			<% }) %>
-			<a href="#" class="btn right orange darken-3 browse-more">Browse more</a>
-		</div>
+			<div class="row">
+				<a href="/browse/request" class="btn right orange darken-3 browse-more">Browse more</a>
+			</div>
 		</div>
 	</div>
 	<div class="col m12 l6">
 		<div class="card-panel">
-		<h4>Featured Support</h4>
-		<div class="row">
-			<% supportServices.map(function(service) { %>
-		  <div class="col m12 l6">
-		    <div class="card hoverable">
-		    	<a href="/services/<%= service._id %>">
-			      <div class="card-image">
-			        <img src="<%= service.image %>" class="fixed-img"/>
-			      </div>
-			      <div class="card-content">
-			      	<p class="black-text"><%= service.headline %> - <%= service.location %></p>
-			      	<span class="card-title truncate"><%= service.title %></span>
-			      	<p class="black-text">¥<%= service.price %> per person</p>
-			      	<p class="black-text"><%= service.rating || "RATING HERE" %></p>
-			      </div>
-		      </a>
-		    </div>
-		  </div>
+			<h4>Featured Support</h4>
+			<% supportServices.map(function(subArray) { %>
+			<div class="row">
+				<% subArray.map(function(service) { %>
+				<div class="col s12 xl6">
+			    <div class="card hoverable">
+			    	<a href="/services/<%= service._id %>">
+				      <div class="card-image">
+				        <img src="<%= service.image %>" class="fixed-img"/>
+				      </div>
+				      <div class="card-content">
+				      	<p class="black-text"><%= service.headline %> - <%= service.location %></p>
+				      	<span class="card-title truncate"><%= service.title %></span>
+				      	<p class="black-text">¥<%= service.price %> per person</p>
+				      	<p class="black-text"><%= service.rating || "RATING HERE" %></p>
+				      </div>
+			      </a>
+			    </div>
+			  </div>
+				<% }) %>
+			</div>
 			<% }) %>
-			<a href="#" class="btn right orange darken-3 browse-more">Browse more</a>
-		</div>
+			<div class="row">
+				<a href="/browse/support" class="btn right orange darken-3 browse-more">Browse more</a>
+			</div>
 		</div>
 	</div>
 </div>
