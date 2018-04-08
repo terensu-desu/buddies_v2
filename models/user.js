@@ -8,6 +8,12 @@ var userSchema = new mongoose.Schema({
 	password: {type: String, required: true},
 	image: String,
 	about_profile: String,
+	languages: String,
+	location: String,
+	school: String,
+	work: String,
+	verified: Boolean,
+	//joined: Date
 });
 
 userSchema.methods.encryptPassword = function(password) {
