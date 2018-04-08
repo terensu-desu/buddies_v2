@@ -19,15 +19,20 @@
   <body>
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Buddies</a>
+        <a href="#" class="brand-logo">
+          <img class="logo" src="https://i.imgur.com/aRCQbZS.png" alt="brand-logo">
+        </a>
+        <a class="brand-slogan accent-text hide-on-med-and-down">
+          <span class="brand-name">Buddies -</span> 仲間と出会い、つながる、支え合う
+        </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">About</a></li>
-          <li><a href="/services/new">Create Listing</a></li>
+          <li><a href="#">Buddiesについて</a></li>
+          <li><a href="/services/new">投稿を作成する</a></li>
           <% if(!currentUser) { %>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Sign Up</a></li>
+          <li><a href="/login">ログイン</a></li>
+          <li><a href="/register">新規登録</a></li>
           <% } else { %>
-          <li><a href="/logout">Logout</a></li>
+          <li><a href="/logout">ログアウト</a></li>
           <% } %>
           <li><a><i class="material-icons">language</i></a></li>
         </ul>
@@ -38,16 +43,16 @@
         <div class="card-panel min-padding">
           <div class="row center no-margin-bot">
             <div class="col s3">
-              <a href="/">Home</a>
+              <a href="/">ホーム</a>
             </div>
             <div class="col s3">
-              <a href="/browse/recommended">Recommended</a>
+              <a href="/browse/recommended">おすすめ</a>
             </div>
             <div class="col s3">
-              <a href="/browse/request">Requests</a>
+              <a href="/browse/request">みんなのリクエスト</a>
             </div>
             <div class="col s3">
-              <a href="/browse/support">Support</a>
+              <a href="/browse/support">みんなのさポート</a>
             </div>
           </div>
         </div>
