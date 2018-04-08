@@ -1,0 +1,40 @@
+<% layout('layout') -%>
+<h4 class="center">Edit your profile</h4>
+<div class="row">
+  <form class="col s6 offset-s3" action="/users/<%= user._id %>?_method=PUT" method="POST">
+    <div class="card-panel">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="languages" type="text" name="languages" class="validate" value="<%= user.languages %>">
+          <label for="languages">Languages</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="location" type="text" name="location" class="validate" value="<%= user.location %>">
+          <label for="location">Location</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input id="image" type="text" name="image" class="validate" value="<%= user.image %>">
+          <label for="image">Image URL</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="school" type="text" name="school" class="validate" value="<%= user.school %>">
+          <label for="school">School</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="work" type="text" name="work" class="validate" value="<%= user.work %>">
+          <label for="work">Work</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="about_profile" type="text" name="about_profile" class="validate" value="<%= user.about_profile %>">
+          <label for="about_profile">About yourself</label>
+        </div>
+      </div>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button class="btn orange darken-4" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
