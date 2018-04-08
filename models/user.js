@@ -13,7 +13,8 @@ var userSchema = new mongoose.Schema({
 	school: String,
 	work: String,
 	verified: Boolean,
-	//joined: Date
+	//joined: Date,
+	// USER RATING: have to get average rating from all service reviews
 });
 
 userSchema.methods.encryptPassword = function(password) {
