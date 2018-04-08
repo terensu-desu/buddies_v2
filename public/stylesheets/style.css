@@ -44,11 +44,27 @@ a {
 .min-padding {
 	padding: 10px 0 10px 0 !important;
 }
+
+.logo {
+	margin-top: 7px;
+	margin-bottom: 3px !important;
+	height: 50px;
+	width: 50px
+}
+.brand-name {
+	font-size: 1.5rem;
+}
+.brand-slogan {
+	padding-left: 70px;
+	cursor: default;
+}
+
 .card, .card-panel {
 	border-radius: 5px;
 }
 .card-title {
 	font-size: 16px !important;
+	font-weight: 700 !important;	
 }
 
 .card-content {
@@ -76,4 +92,9 @@ a {
 	list-style-type: circle !important;
 	list-style-position: inside;
 	font-size: 1.2rem;
+}
+
+.subheader {
+	font-weight: 600 !important;
+	font-size: 1.1rem !important;
 }
