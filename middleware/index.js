@@ -1,6 +1,7 @@
 var middlewareObj = {};
 var Service = require("../models/service");
 var Review = require("../models/review");
+var User = require("../models/user");
 
 middlewareObj.isLoggedIn = function(req, res, next) {
 	if(req.isAuthenticated()) {
@@ -8,7 +9,7 @@ middlewareObj.isLoggedIn = function(req, res, next) {
 	}
 	req.flash("negative", "Please login first.")
 	res.redirect('/login');
-}
+};
 
 middlewareObj.checkListingOwnership = function(req, res, next) {
 	if(req.isAuthenticated()) {
@@ -29,7 +30,7 @@ middlewareObj.checkListingOwnership = function(req, res, next) {
 		req.flash("negative", "Please login first.");
 		res.redirect("/login");
 	}
-}
+};
 
 middlewareObj.checkReviewOwnership = function(req, res, next) {
 	if(req.isAuthenticated()) {
@@ -50,6 +51,27 @@ middlewareObj.checkReviewOwnership = function(req, res, next) {
 		req.flash("negative", "Please login first.");
 		res.redirect("/login");
 	}
-}
+};
+
+middlewareObj.checkUserOwnership = function(req, res, next) {
+	if(req.isAuthenticated()) {
+		User.findById(req.params.user_id, function(err, foundUser) {
+			if(err || !foundUser) {
+				req.flash("negative", "Sorry, that review doesn't exist!");
+				res.redirect("/");
+			} else {
+				if(foundUser._id.equals(req.user._id)) {
+					next();
+				} else {
+					req.flash("negative", "Authorization error.");
+					res.redirect("/");
+				}
+			}
+		});
+	} else {
+		req.flash("negative", "Please login first.");
+		res.redirect("/login");
+	}
+};
 
 module.exports = middlewareObj;
