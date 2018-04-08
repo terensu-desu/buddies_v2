@@ -109,7 +109,7 @@ router.put("/:id", checkListingOwnership, function(req, res) {
 	});
 });
 
-// DESTROY CAMPGROUND
+// DESTROY SERVICE
 router.delete("/:id", checkListingOwnership, function(req, res) {
 	Service.findByIdAndRemove(req.params.id, function(err) {
 		if(err) {
