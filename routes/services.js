@@ -43,7 +43,7 @@ router.post("/", isLoggedIn, function(req, res) {
 			image: req.user.image,
 			about_profile: req.user.about_profile
 		}
-	}
+	};
 	Service.create(pendingNewService, function(err, newService) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
@@ -62,7 +62,12 @@ router.get("/:id", function(req, res) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
 			res.redirect("back");
 		} else {
-			res.render("services/show", {service: foundService, csrfToken: req.csrfToken()});
+			var totalRating = 0;
+			for(var review of foundService.reviews) {
+				totalRating += review.rating;
+			}
+			var avgRating = totalRating * foundService.reviews.length;
+			res.render("services/show", {service: foundService, rating: avgRating, csrfToken: req.csrfToken()});
 		}
 	});
 });
