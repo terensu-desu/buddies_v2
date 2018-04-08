@@ -69,38 +69,6 @@
           <label for="location_notes">Location notes</label>
         </div>
       </div>
-      <div class="row">
-        <div class="col s6">
-          Service type:
-          <p>
-            <label>
-              <input class="with-gap" name="serviceType" type="radio" />
-              <span>Request</span>
-            </label>
-            <label>
-              <input class="with-gap" name="serviceType" type="radio" />
-              <span>Support</span>
-            </label>
-          </p>
-        </div>
-        <div class="col s6">
-          Category:
-          <p>
-            <label>
-              <input class="with-gap" name="category" type="radio" />
-              <span>Buddies</span>
-            </label>
-            <label>
-              <input class="with-gap" name="category" type="radio" />
-              <span>Life</span>
-            </label>
-            <label>
-              <input class="with-gap" name="category" type="radio" />
-              <span>Events</span>
-            </label>
-          </p>
-        </div>
-      </div>
       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <button class="btn orange darken-4" type="submit">Submit</button>
     </form>
