@@ -16,7 +16,37 @@
 				      	<p class="black-text"><%= service.headline %> - <%= service.location %></p>
 				      	<span class="card-title truncate"><%= service.title %></span>
 				      	<p class="black-text">¥<%= service.price %> per hour</p>
-				      	<p class="black-text"><%= service.rating || "RATING HERE" %></p>
+				      	<p>
+				      	<% if(service.rating > 1) { %>
+					      	<% for(var i = 0; i <= service.rating; i++) { %>
+					      	<i class="fas fa-star color-accent"></i>
+					      	<% } %>
+					      	<% if(service.rating === 4) { %>
+					      	<i class="fas fa-star"></i>
+					      	<% } %>
+					      	<% if(service.rating === 3) { %>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<% } %>
+					      	<% if(service.rating === 2) { %>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<% } %>
+					      	<% if(service.rating === 1) { %>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<% } %>
+				      	<% } else { %>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+				      	<% } %>
+				      	</p>
 				      </div>
 			      </a>
 			    </div>
@@ -45,7 +75,37 @@
 				      	<p class="black-text"><%= service.headline %> - <%= service.location %></p>
 				      	<span class="card-title truncate"><%= service.title %></span>
 				      	<p class="black-text">¥<%= service.price %> per person</p>
-				      	<p class="black-text"><%= service.rating || "RATING HERE" %></p>
+				      	<p>
+				      	<% if(service.rating > 1) { %>
+					      	<% for(var i = 0; i <= service.rating; i++) { %>
+					      	<i class="fas fa-star color-accent"></i>
+					      	<% } %>
+					      	<% if(service.rating === 4) { %>
+					      	<i class="fas fa-star"></i>
+					      	<% } %>
+					      	<% if(service.rating === 3) { %>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<% } %>
+					      	<% if(service.rating === 2) { %>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<% } %>
+					      	<% if(service.rating === 1) { %>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<i class="fas fa-star"></i>
+					      	<% } %>
+				      	<% } else { %>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+				      	<% } %>
+				      	</p>
 				      </div>
 			      </a>
 			    </div>
