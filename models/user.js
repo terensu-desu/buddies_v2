@@ -15,6 +15,12 @@ var userSchema = new mongoose.Schema({
 	verified: Boolean,
 	//joined: Date,
 	// USER RATING: have to get average rating from all service reviews
+	services: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Service"
+		}
+	]
 });
 
 userSchema.methods.encryptPassword = function(password) {
