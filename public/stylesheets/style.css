@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Source Sans Pro', "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #efefef;
   display: flex;
   min-height: 100vh;
@@ -19,6 +19,10 @@ main {
 a {
   color: #ef6c00;
   transition: .5s;
+}
+
+p {
+	font-size: 1.2rem;
 }
 
 .nav-wrapper a {
@@ -60,8 +64,8 @@ a {
 	border-radius: 5px;
 }
 .card-title {
-	font-size: 16px !important;
-	font-weight: 700 !important;	
+	font-size: 19px !important;
+	font-weight: 600 !important;	
 }
 
 .card-content {
@@ -93,5 +97,5 @@ a {
 
 .subheader {
 	font-weight: 600 !important;
-	font-size: 1.1rem !important;
+	font-size: 1.4rem !important;
 }
