@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
+var async = require("async");
 var User = require("../models/user");
+var Service = require("../models/service");
 var middleware = require("../middleware");
 var { isLoggedIn, checkUserOwnership } = middleware;
 
@@ -15,9 +17,58 @@ router.get("/:user_id", function(req, res) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
 			res.redirect("back");
 		} else {
-			var date = new Date();
-			console.log(date);
-			res.render("users/show", {user: foundUser, csrfToken: req.csrfToken()});
+			var timestamp = foundUser._id.getTimestamp();
+			var year = timestamp.getFullYear();
+			var month = timestamp.getMonth() + 1;
+			var date = timestamp.getDate();
+			if(date < 10) {
+				date = "0" + date;
+			}
+			if(month < 10) {
+				month = "0" + month;
+			}
+			var createdAt = year + "/" + month + "/" + date;
+			var allReviews = [];
+			var avgRating = 0;
+
+			/*async.each(foundUser.services, function(service) {
+				Service.findById(service).populate("reviews").exec(function(err, foundService) {
+					if(err) {
+						console.log(err);
+					} else {
+						console.log("Hellooo")
+						for(var review of foundService.reviews) {
+							allReviews.push(review.rating);
+						}
+					}
+				});
+			});*/
+
+			/*for(var service of foundUser.services) {
+				Service.findById(service).populate("reviews").exec(function(err, foundService) {
+					if(err) {
+						console.log(err);
+					} else {
+						for(var review of foundService.reviews) {
+							allReviews.push(review.rating);
+						}
+					}
+				});
+			}*/
+			if(allReviews) {
+				avgRating = allReviews.reduce((total, rating) => {
+					total += rating
+				}, 0) * allReviews.length;
+			}
+			// problem is render happens before rating gets handled
+			res.render("users/show",
+				{
+					user: foundUser,
+					createdAt: createdAt,
+					rating: avgRating,
+					csrfToken: req.csrfToken()
+				}
+			);
 		}
 	});
 });
