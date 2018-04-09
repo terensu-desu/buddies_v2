@@ -7,6 +7,7 @@ var serviceSchema = new mongoose.Schema({
 	location: String,
 	total_time: String,
 	memo: String,
+	date: String,
 	language: String,
 	description: String,
 	provided_items: String,
