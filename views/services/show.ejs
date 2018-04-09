@@ -3,9 +3,10 @@
   <div class="col s12 m6 l7">
     <div class="row">
       <div class="col s10">
-        <h4><%= service.title %></h4>
-        <p><%= service.headline %></p>
-        <p>Hosted by <%= service.author.user %></p>
+        <h4 class="color-accent"><%= service.title %></h4>
+        <p class="subheader"><%= service.headline %></p>
+        <p class="subheader">Hosted by <span class="color-accent"><%= service.author.user %></span></p>
+        <p class="subheader">Date: <%= service.date || "TBA" %></p>
       </div>
       <div class="col s2">
         <!-- Eventually link this to a user profile -->
@@ -101,7 +102,7 @@
             </tr>
             <tr>
               <td>
-                <p>
+                <p class="color-accent">
                 <% if(rating > 1) { %>
                   <% for(var i = 1; i <= rating; i++) { %>
                   <i class="fas fa-star color-accent"></i>
