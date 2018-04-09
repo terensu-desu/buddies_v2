@@ -24,9 +24,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s8">
           <input id="image" type="text" name="image" class="validate">
           <label for="image">Promotional Image</label>
+        </div>
+        <div class="input-field col s4">
+          <label for="date">Date</label>
+          <input type="text" class="datepicker" name="date">
         </div>
       </div>
       <div class="row">
@@ -106,3 +110,7 @@
     </form>
   </div>
 </div>
+<script>
+  var elem = document.querySelector('.datepicker');
+  var instance = M.Datepicker.init(elem);
+</script>
