@@ -3,6 +3,7 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 var Service = require("../models/service");
+var User = require("../models/user");
 var middleware = require("../middleware");
 var { isLoggedIn, checkListingOwnership } = middleware;
 
@@ -27,6 +28,7 @@ router.post("/", isLoggedIn, function(req, res) {
 		location: req.body.location,
 		memo: req.body.memo,
 		image: req.body.image,
+		date: req.body.date,
 		price: req.body.price,
 		total_time: req.body.total_time,
 		language: req.body.language,
@@ -49,6 +51,15 @@ router.post("/", isLoggedIn, function(req, res) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
 			res.redirect("back");
 		} else {
+			User.findById(req.user._id, function(err, foundUser) {
+				if(err) {
+					console.log(err);
+				} else {
+					newService.save();
+					foundUser.services.push(newService._id);
+					foundUser.save();
+				}
+			});
 			req.flash("success", "New service listing created!");
 			res.redirect("/");
 		}
@@ -63,10 +74,13 @@ router.get("/:id", function(req, res) {
 			res.redirect("back");
 		} else {
 			var totalRating = 0;
-			for(var review of foundService.reviews) {
-				totalRating += review.rating;
+			var avgRating = 0;
+			if(foundService.reviews) {
+				for(var review of foundService.reviews) {
+					totalRating += review.rating;
+				}
 			}
-			var avgRating = totalRating * foundService.reviews.length;
+			avgRating = totalRating * foundService.reviews.length || 0;
 			res.render("services/show", {service: foundService, rating: avgRating, csrfToken: req.csrfToken()});
 		}
 	});
@@ -99,10 +113,8 @@ router.put("/:id", checkListingOwnership, function(req, res) {
 		provided_items: req.body.provided_items,
 		guest_options: req.body.guest_options,
 		notes: req.body.notes,
-		location_notes: req.body.location_notes,
-		serviceType: req.body.serviceType,
-		category: req.body.category
-	}
+		location_notes: req.body.location_notes
+	};
 	Service.findByIdAndUpdate(req.params.id, editedService, function(err, updatedService) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
