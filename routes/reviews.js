@@ -39,7 +39,7 @@ router.post("/", isLoggedIn, function(req, res) {
 				},
 				date: new Date()
 			}
-			review.date.toLocaleString("ja-JP", {year: "numeric", month: "long", day: "numeric"});
+			review.date = review.date.toLocaleString("ja-JP", {year: "numeric", month: "long", day: "numeric"});
 			Review.create(review, function(err, newReview) {
 				if(err) {
 					req.flash("negative", "Sorry, there was an error processing your request.");
