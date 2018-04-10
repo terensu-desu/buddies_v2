@@ -98,7 +98,13 @@
           <tbody>
             <tr>
               <td>¥<%= service.price %></span> per person</td>
-              <td rowspan="2"><button class="btn btn-large center orange darken-4">See dates</button></td>
+              <td rowspan="2">
+                <button 
+                class="btn btn-large center orange darken-4 modal-trigger"
+                href="#checkoutModal">
+                  Reserve!
+                </button>
+              </td>
             </tr>
             <tr>
               <td>
@@ -108,22 +114,22 @@
                   <i class="fas fa-star color-accent"></i>
                   <% } %>
                   <% if(rating === 4) { %>
-                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
                   <% } %>
                   <% if(rating === 3) { %>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
                   <% } %>
                   <% if(rating === 2) { %>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
                   <% } %>
                   <% if(rating === 1) { %>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
                   <% } %>
                 <% } else { %>
                   <i class="far fa-star"></i>
@@ -167,3 +173,55 @@
     <% } %>
   </div>
 </div>
+<!-- Modal Structure -->
+<div id="checkoutModal" class="modal">
+  <div class="modal-content center">
+    <h4>Book your reservation for 
+      <span class="color-accent">
+        <%= service.title %>
+      </span>
+    </h4>
+    <h5>Please confirm the information.</h5>
+    <p class="subheader">Date: <span class="color-accent"><%= service.date %></span></p>
+    <p class="subheader">
+      Price: 
+      <span class="color-accent">
+        ¥<%= service.price %> <%= service.serviceType === "support" ? "per person" : "per hour" %>.
+      </span>
+    </p>
+    <div class="row">
+      <p class="no-margin-bottom subheader">Guests:</p>
+      <div class="input-field col s4 offset-s4 no-margin-top">
+        <input
+        id="guests"
+        type="number"
+        name="guests"
+        class="validate"
+        min="1"
+        max="4"
+        step="1"
+        required>
+        <label for="guests">Number of people in your party</label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <form class="center" action="your-server-side-code" method="POST">
+      <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_N6CAyHnMHm4mKQjIvBQQUv32"
+        data-amount="<%= service.price %>"
+        data-name="Buddies"
+        data-description="<%= service.title %>"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto"
+        data-currency="jpy">
+      </script>
+    </form>
+  </div>
+</div>
+
+<script>
+  var modal = document.querySelector('.modal');
+  var modalInstance = M.Modal.init(modal);
+</script>
