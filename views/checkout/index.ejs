@@ -1,0 +1,56 @@
+<% layout('layout') -%>
+<div class="row">
+	<form class="col s8 offset-s2" action="/checkout" method="POST">
+		<div class="card-panel">
+			<h4 class="center">
+				Book your reservation for 
+				<span class="color-accent"><%= service.title %></span>
+			</h4>
+    	<h5 class="center">Your host: <span class="color-accent"><%= service.author.user %></span></h5>
+    	<h5 class="center">Location: <span class="color-accent"><%= service.location %></span></h5>
+    	<h5 class="center">Date: <span class="color-accent"><%= service.date %></span></h5>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input id="guests" type="number" name="guests" class="validate" min="1" max="4" step="1">
+          <label for="guests">Number of people in your party</label>
+        </div>
+      </div>
+			<div class="divider"></div>
+			<div class="row">
+				<p class="center">Card type:</p>
+				<p class="center">
+		      <label>
+		        <input value="Visa" name="cardtype" type="radio" />
+		        <span>Visa</span>
+		      </label>
+		      <label>
+		        <input value="Mastercard" name="cardtype" type="radio" />
+		        <span>Mastercard</span>
+		      </label>
+		      <label>
+		        <input value="Discover" name="cardtype" type="radio"  />
+		        <span>Discover</span>
+		      </label>
+		    </p>
+	    </div>
+			<div class="row">
+				<div class="input-field col s12">
+          <input id="cardholder" type="text" name="cardholder" class="validate">
+          <label for="cardholder">Name on card</label>
+        </div>
+			</div>
+			<div class="row">
+				<div class="input-field col s8">
+          <input id="cardnumber" type="text" name="cardnumber" class="validate">
+          <label for="cardnumber">Card number</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="cardsecurity" type="text" name="cardsecurity" class="validate" maxlength="3">
+          <label for="cardsecurity">Card security number</label>
+        </div>
+			</div>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button class="btn orange darken-4" type="submit">Checkout</button>
+    </div>
+	</form>
+</div>
