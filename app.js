@@ -22,6 +22,7 @@ var users = require('./routes/users');
 var services = require('./routes/services');
 var reviews = require('./routes/reviews');
 var browse = require('./routes/browse');
+var checkout = require("./routes/checkout");
 
 var app = express();
 var url = process.env.DATABASEURL || "mongodb://localhost/buddies";
@@ -60,6 +61,7 @@ app.use(function(req, res, next) {
 
 // ROUTES
 app.use("/browse", browse);
+app.use("/checkout", checkout);
 app.use("/services", services);
 app.use("/services/:id/reviews", reviews);
 app.use('/users', users);
