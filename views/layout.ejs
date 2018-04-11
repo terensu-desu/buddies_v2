@@ -34,9 +34,14 @@
           <li><a href="/login">ログイン</a></li>
           <li><a href="/register">新規登録</a></li>
           <% } else { %>
+          <li><a href="/users/<%= currentUser._id %>">プロフィール</a></li>
           <li><a href="/logout">ログアウト</a></li>
           <% } %>
-          <li><a><i class="material-icons">language</i></a></li>
+          <li>
+            <a id="language">
+              <i class="material-icons left">language</i>EN
+            </a>
+          </li>
         </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
@@ -58,10 +63,16 @@
       <li><a href="/register">新規登録</a></li>
       <div class="divider"></div>
       <% } else { %>
+      <li><a href="/users/<%= currentUser._id %>">プロフィール</a></li>
+      <div class="divider"></div>
       <li><a href="/logout">ログアウト</a></li>
       <div class="divider"></div>
       <% } %>
-      <li><a><i class="material-icons">language</i></a></li>
+      <li>
+        <a id="language">
+          <i class="material-icons left">language</i>EN
+        </a>
+      </li>
     </ul>
     <main>
       <div class="container">
