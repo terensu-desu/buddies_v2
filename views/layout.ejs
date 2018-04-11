@@ -38,8 +38,31 @@
           <% } %>
           <li><a><i class="material-icons">language</i></a></li>
         </ul>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
+    <ul id="slide-out" class="sidenav">
+      <li>
+        <div class="user-view center">
+          <a href="#!user"><img class="responsive-img" src="https://i.imgur.com/aRCQbZS.png"></a>
+          <a href="#!email"><span class="color-accent email">仲間と出会い、つながる、支え合う</span></a>
+        </div>
+      </li>
+      <li><a href="#">Buddiesについて</a></li>
+      <div class="divider"></div>
+      <li><a href="/services/new">投稿を作成する</a></li>
+      <div class="divider"></div>
+      <% if(!currentUser) { %>
+      <li><a href="/login">ログイン</a></li>
+      <div class="divider"></div>
+      <li><a href="/register">新規登録</a></li>
+      <div class="divider"></div>
+      <% } else { %>
+      <li><a href="/logout">ログアウト</a></li>
+      <div class="divider"></div>
+      <% } %>
+      <li><a><i class="material-icons">language</i></a></li>
+    </ul>
     <main>
       <div class="container">
         <div class="card-panel min-padding">
@@ -75,6 +98,10 @@
       </div>
     </div>
   </body>
+  <script>
+    var sideNav = document.querySelector('.sidenav');
+    var sideNavInstance = M.Sidenav.init(sideNav);
+  </script>
   <!--Begin mc_embed_signup scripts-->
   <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[1]='NAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email'; /*
      * Translated default messages for the jQuery validation plugin.
