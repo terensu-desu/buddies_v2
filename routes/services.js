@@ -80,7 +80,7 @@ router.get("/:id", function(req, res) {
 					totalRating += review.rating;
 				}
 			}
-			avgRating = totalRating * foundService.reviews.length || 0;
+			avgRating = totalRating / foundService.reviews.length || 0;
 			res.render("services/show", {service: foundService, rating: avgRating, csrfToken: req.csrfToken()});
 		}
 	});
