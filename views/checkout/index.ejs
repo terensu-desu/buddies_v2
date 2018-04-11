@@ -1,56 +1,98 @@
 <% layout('layout') -%>
+<!-- It is recommended to include this script on every page to prevent fraud -->
+<script src="https://js.stripe.com/v3/"></script>
 <div class="row">
-	<form class="col s8 offset-s2" action="/checkout" method="POST">
-		<div class="card-panel">
-			<h4 class="center">
-				Book your reservation for 
-				<span class="color-accent"><%= service.title %></span>
-			</h4>
-    	<h5 class="center">Your host: <span class="color-accent"><%= service.author.user %></span></h5>
-    	<h5 class="center">Location: <span class="color-accent"><%= service.location %></span></h5>
-    	<h5 class="center">Date: <span class="color-accent"><%= service.date %></span></h5>
-      <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <input id="guests" type="number" name="guests" class="validate" min="1" max="4" step="1">
-          <label for="guests">Number of people in your party</label>
-        </div>
-      </div>
-			<div class="divider"></div>
-			<div class="row">
-				<p class="center">Card type:</p>
-				<p class="center">
-		      <label>
-		        <input value="Visa" name="cardtype" type="radio" />
-		        <span>Visa</span>
-		      </label>
-		      <label>
-		        <input value="Mastercard" name="cardtype" type="radio" />
-		        <span>Mastercard</span>
-		      </label>
-		      <label>
-		        <input value="Discover" name="cardtype" type="radio"  />
-		        <span>Discover</span>
-		      </label>
-		    </p>
-	    </div>
-			<div class="row">
-				<div class="input-field col s12">
-          <input id="cardholder" type="text" name="cardholder" class="validate">
-          <label for="cardholder">Name on card</label>
-        </div>
-			</div>
-			<div class="row">
-				<div class="input-field col s8">
-          <input id="cardnumber" type="text" name="cardnumber" class="validate">
-          <label for="cardnumber">Card number</label>
-        </div>
-        <div class="input-field col s4">
-          <input id="cardsecurity" type="text" name="cardsecurity" class="validate" maxlength="3">
-          <label for="cardsecurity">Card security number</label>
-        </div>
-			</div>
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <button class="btn orange darken-4" type="submit">Checkout</button>
-    </div>
-	</form>
+	<div class="card-panel">
+		<h4 class="center">
+			Book your reservation for 
+		</h4>
+		<h4 class="center">
+			<span class="color-accent"><%= service.title %></span>
+		</h4>
+  	<h5 class="center">Your host: <span class="color-accent"><%= service.author.user %></span></h5>
+  	<h5 class="center">Location: <span class="color-accent"><%= service.location %></span></h5>
+  	<h5 class="center">Date: <span class="color-accent"><%= service.date %></span></h5>
+		<div class="divider"></div>
+		<br>
+		<div class="row">
+			<form
+			class="col s8 offset-s2"
+			id="payment-form"
+			action="/checkout" 
+			method="POST">
+			  <div class="form-row">
+			  	<div class="row">
+		        <div class="input-field col s6">
+		          <input placeholder="Jane De Arc" id="cardname" type="text" class="validate" required>
+		          <label for="cardname">Cardholder's name</label>
+		        </div>
+		      	<div class="input-field col s6">
+		          <input id="guests" type="number" value="1" min="1" max="4" step="1" class="validate" required>
+		          <label for="guests">Number of guests (Number of Guests x Service Charge)</label>
+		        </div>
+		      </div>
+		      <div class="row">
+		      	<div class="input-field col s12">
+		          <input 
+		          id="message" 
+		          type="text" 
+		          class="validate" 
+		          placeholder="Let your host know if you need anything in particular for this service.">
+		          <label for="message">Message to host</label>
+		        </div>
+		      </div>
+		      <div class="row">
+		      	<div class="col s12">
+					    <label for="card-element">
+					      Please enter your credit or debit card information
+					    </label>
+					    <div id="card-element">
+					      <!-- A Stripe Element will be inserted here. -->
+					    </div>
+					    <!-- Used to display Element errors. -->
+					    <div id="card-errors" role="alert"></div>
+				    </div>
+			  	</div>
+			  </div>
+	      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+	      <br>
+	      <button 
+	      class="btn orange darken-4" 
+	      type="submit"
+	      id="purchasebutton">
+	    		Complete transaction
+	    	</button>
+			</form>
+		</div>
+  </div>
 </div>
+<script>
+	var stripe = Stripe('pk_test_N6CAyHnMHm4mKQjIvBQQUv32');
+	var elements = stripe.elements();
+	// Custom styling can be passed to options when creating an Element.
+	var style = {
+	  base: {
+	    fontSize: '20px',
+	    color: "#32325d",
+	  }
+	};
+	// Create an instance of the card Element.
+	var card = elements.create('card', {style: style, hidePostalCode: true});
+	// Add an instance of the card Element into the `card-element` <div>.
+	card.mount('#card-element');
+	card.addEventListener('change', function(event) {
+	  var displayError = document.getElementById('card-errors');
+	  if (event.error) {
+	    displayError.textContent = event.error.message;
+	  } else {
+	    displayError.textContent = '';
+	  }
+	});
+	document.getElementById("purchasebutton").addEventListener("click", function(event) {
+		event.preventDefault();
+		this.setAttribute("disabled", "true");
+		setTimeout(function() {
+			document.getElementById("purchasebutton").setAttribute("disabled", "false");
+		}, 3000)
+	});
+</script>
