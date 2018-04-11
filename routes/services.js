@@ -81,7 +81,7 @@ router.get("/:id", function(req, res) {
 				}
 			}
 			avgRating = totalRating / foundService.reviews.length || 0;
-			res.render("services/show", {service: foundService, rating: avgRating, csrfToken: req.csrfToken()});
+			res.render("services/show", {service: foundService, csrfToken: req.csrfToken()});
 		}
 	});
 });
