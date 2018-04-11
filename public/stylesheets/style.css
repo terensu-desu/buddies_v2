@@ -60,6 +60,16 @@ p {
 	cursor: default;
 }
 
+/* SIDENAV */
+.sidenav li a, .sidenav li a i {
+	font-size: 1.6rem !important;
+	color: #ef6c00 !important;
+}
+.sidenav .user-view .email {
+	font-size: 1.5rem !important;
+}
+/* END SIDENAV */
+
 .card, .card-panel {
 	border-radius: 5px;
 }
@@ -71,9 +81,10 @@ p {
 .card-content {
 	padding: 12px !important;
 }
-
-.fixed-img {
-	max-height: 350px !important;
+@media screen and (min-width: 993px) {
+	.fixed-img {
+		max-height: 170px !important;
+	}
 }
 
 .browse-more {
@@ -81,7 +92,7 @@ p {
 }
 
 .host-img {
-	max-height: 75px;
+	max-height: 150px;
 	margin-top: 45px;
 }
 
