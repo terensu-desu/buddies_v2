@@ -1,15 +1,14 @@
 <% layout('layout') -%>
 <div class="row white">
-  <div class="col s12 m6 l7">
+  <div class="col s12 xl7">
     <div class="row">
-      <div class="col s10">
+      <div class="col s8">
         <h4 class="color-accent"><%= service.title %></h4>
         <p class="subheader"><%= service.headline %></p>
         <p class="subheader">Hosted by <span class="color-accent"><%= service.author.user %></span></p>
         <p class="subheader">Date: <%= service.date || "TBA" %></p>
       </div>
-      <div class="col s2">
-        <!-- Eventually link this to a user profile -->
+      <div class="col s4">
         <a href="/users/<%= service.author.id %>" class="right-align">
           <img src="<%= service.author.image %>" 
              class="circle host-img" alt="host image">
@@ -88,7 +87,7 @@
     <!-- end reviews -->
   </div>
   <!-- info card -->
-  <div class="col m6 l5">
+  <div class="col s12 xl5">
     <div id="show-card" class="card">
       <div class="card-image">
         <img src="<%= service.image %>">
@@ -206,18 +205,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <form class="center" action="your-server-side-code" method="POST">
-      <script
-        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="pk_test_N6CAyHnMHm4mKQjIvBQQUv32"
-        data-amount="<%= service.price %>"
-        data-name="Buddies"
-        data-description="<%= service.title %>"
-        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-        data-locale="auto"
-        data-currency="jpy">
-      </script>
-    </form>
+    <a class="btn center orange darken-4" href="/checkout/<%= service._id %>">Next</a>
   </div>
 </div>
 
