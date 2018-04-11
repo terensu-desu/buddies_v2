@@ -39,7 +39,7 @@ router.post("/", isLoggedIn, function(req, res) {
 				},
 				date: new Date()
 			}
-			review.date = review.date.toLocaleString("ja-JP", {year: "numeric", month: "long", day: "numeric"});
+			review.date.toLocaleString("ja-JP", {year: "numeric", month: "long", day: "numeric"});
 			Review.create(review, function(err, newReview) {
 				if(err) {
 					req.flash("negative", "Sorry, there was an error processing your request.");
@@ -47,6 +47,15 @@ router.post("/", isLoggedIn, function(req, res) {
 				} else {
 					newReview.save();
 					foundService.reviews.push(newReview._id);
+					if(isNaN(foundService.totalReviews)) {
+						foundService.totalReviews = 1;
+					} else {
+						foundService.totalReviews += 1;
+					}
+					if(isNaN(foundService.totalRating)) {
+						foundService.totalRating = 0;
+					}
+					foundService.totalRating = foundService.totalRating + newReview.rating;
 					foundService.save();
 					req.flash("success", "Review added! Thank you!");
 					res.redirect("/services/" + req.params.id);
@@ -87,14 +96,34 @@ router.put("/:review_id", checkReviewOwnership, function(req, res) {
 
 // DESTROY remove review
 router.delete("/:review_id", checkReviewOwnership, function(req, res) {
-	Review.findByIdAndRemove(req.params.review_id, function(err) {
+	Service.findById(req.params.id, function(err, foundService) {
+		if(err) {
+			req.flash("negative", "Sorry, that listing was not found.");
+			res.redirect("back");
+		} else {
+			Review.findById(req.params.review_id, function(err, foundReview) {
+				foundService.totalReviews -= 1;
+				foundService.totalRating -= foundReview.rating;
+				foundService.save();
+				Review.remove({_id: foundReview._id}, function(err) {
+					if(err) {
+						req.flash("negative", "Sorry, there was an error processing your request.");
+						res.redirect("back");
+					} else {
+						res.redirect("/");
+					}
+				})
+			});
+		}
+	});
+	/*Review.findByIdAndRemove(req.params.review_id, function(err) {
 		if(err) {
 			req.flash("negative", "Sorry, there was an error processing your request.");
 			res.redirect("back");
 		} else {
 			res.redirect("/");
 		}
-	});
+	});*/
 });
 
 module.exports = router;
