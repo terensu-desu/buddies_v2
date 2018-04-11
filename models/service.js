@@ -32,7 +32,9 @@ var serviceSchema = new mongoose.Schema({
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Review"
 		}
-	]
+	],
+	totalReviews: Number,
+	totalRating: Number
 });
 
 // other things to add: rating, languages, date, time, etc
