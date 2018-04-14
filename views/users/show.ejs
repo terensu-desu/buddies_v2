@@ -34,10 +34,10 @@
     <h5>Current Postings</h5>
     <% } %>
     <!-- reviews -->
-    <% if(user.reviews) { %>
+    <% if(reviews) { %>
     <h5>Reviews</h5>
     <ul class="collection">
-      <% user.reviews.map(function(review) { %>
+      <% reviews.map(function(review) { %>
       <li class="collection-item avatar">
         <img src="<%= review.author.image %>" alt="user image" class="circle">
         <span class="title"><%= review.author.user %></span>
@@ -57,7 +57,7 @@
             </div>
           </div>
         <% } else { %>
-          <a class="secondary-content"><i class="material-icons">flag</i></a>
+          <a class="secondary-content"><i class="material-icons color-accent">flag</i></a>
         <% } %>
       </li>
       <% }) %>
@@ -80,35 +80,28 @@
             <tr>
               <td>
                 <p class="color-accent">
-                <% if(rating > 1) { %>
-                  <% for(var i = 0; i <= rating; i++) { %>
-                  <i class="fas fa-star color-accent"></i>
+                  <% if(rating >= 1) { %>
+                    <% for(var i = 1; i <= rating; i++) { %>
+                    <i class="fas fa-star color-accent"></i>
+                    <% } %>
+                    <% if(rating >= 4 && rating != 5) { %>
+                    <i class="far fa-star"></i>
+                    <% } else if(rating >= 3 && rating != 4) { %>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <% } else if(rating >= 2 && rating != 3) { %>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <% } else if(rating >= 1 && rating != 2) { %>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <% } %>
+                  <% } else { %>
+                    <br>
                   <% } %>
-                  <% if(rating === 4) { %>
-                  <i class="far fa-star"></i>
-                  <% } %>
-                  <% if(rating === 3) { %>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <% } %>
-                  <% if(rating === 2) { %>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <% } %>
-                  <% if(rating === 1) { %>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <% } %>
-                <% } else { %>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                <% } %>
                 </p>
               </td>
             </tr>
