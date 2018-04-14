@@ -21,16 +21,16 @@
 					      	<% for(var i = 1; i <= service.totalRating / service.totalReviews; i++) { %>
 					      	<i class="fas fa-star color-accent"></i>
 					      	<% } %>
-					      	<% if(service.totalRating / service.totalReviews >= 4 && service.totalRating / service.totalReviews != 5) { %>
+					      	<% if(service.totalRating / service.totalReviews >= 4 && service.totalRating / service.totalReviews < 5) { %>
 					      	<i class="far fa-star"></i>
-					      	<% } else if(service.totalRating / service.totalReviews >= 3 && service.totalRating / service.totalReviews != 4) { %>
-					      	<i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-					      	<% } else if(service.totalRating / service.totalReviews >= 2 && service.totalRating / service.totalReviews != 3) { %>
+					      	<% } else if(service.totalRating / service.totalReviews >= 3 && service.totalRating / service.totalReviews < 4) { %>
 					      	<i class="far fa-star"></i>
                   <i class="far fa-star"></i>
+					      	<% } else if(service.totalRating / service.totalReviews >= 2 && service.totalRating / service.totalReviews < 3) { %>
+					      	<i class="far fa-star"></i>
                   <i class="far fa-star"></i>
-					      	<% } else if(service.totalRating / service.totalReviews >= 1 && service.totalRating / service.totalReviews != 2) { %>
+                  <i class="far fa-star"></i>
+					      	<% } else if(service.totalRating / service.totalReviews >= 1 && service.totalRating / service.totalReviews < 2) { %>
                   <i class="far fa-star"></i>
                   <i class="far fa-star"></i>
                   <i class="far fa-star"></i>
@@ -73,27 +73,23 @@
 					      	<% for(var i = 1; i <= service.totalRating / service.totalReviews; i++) { %>
 					      	<i class="fas fa-star color-accent"></i>
 					      	<% } %>
-					      	<% if(service.totalRating / service.totalReviews >= 4 && service.totalRating / service.totalReviews != 5) { %>
+					      	<% if(service.totalRating / service.totalReviews >= 4 && service.totalRating / service.totalReviews < 5) { %>
 					      	<i class="far fa-star"></i>
-					      	<% } else if(service.totalRating / service.totalReviews >= 3 && service.totalRating / service.totalReviews != 4) { %>
-					      	<i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-					      	<% } else if(service.totalRating / service.totalReviews >= 2 && service.totalRating / service.totalReviews != 3) { %>
+					      	<% } else if(service.totalRating / service.totalReviews >= 3 && service.totalRating / service.totalReviews < 4) { %>
 					      	<i class="far fa-star"></i>
                   <i class="far fa-star"></i>
+					      	<% } else if(service.totalRating / service.totalReviews >= 2 && service.totalRating / service.totalReviews < 3) { %>
+					      	<i class="far fa-star"></i>
                   <i class="far fa-star"></i>
-					      	<% } else if(service.totalRating / service.totalReviews >= 1 && service.totalRating / service.totalReviews != 2) { %>
+                  <i class="far fa-star"></i>
+					      	<% } else if(service.totalRating / service.totalReviews >= 1 && service.totalRating / service.totalReviews < 2) { %>
                   <i class="far fa-star"></i>
                   <i class="far fa-star"></i>
                   <i class="far fa-star"></i>
                   <i class="far fa-star"></i>
                   <% } %>
 				      	<% } else { %>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
+									<br>
 				      	<% } %>
 				      	</p>
 				      </div>
