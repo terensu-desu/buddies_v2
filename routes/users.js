@@ -12,11 +12,12 @@ router.use(csrfProtection);
 
 // SHOW
 router.get("/:user_id", function(req, res) {
-	User.findById(req.params.user_id).populate("reviews").exec(function(err, foundUser) {
+	User.findById(req.params.user_id, function(err, foundUser) {
 		if(err) {
 			req.flash("negative", "There was an error handling your request. Please try again.");
 			res.redirect("back");
 		} else {
+			//transform timestamp from model into a friendly date
 			var timestamp = foundUser._id.getTimestamp();
 			var year = timestamp.getFullYear();
 			var month = timestamp.getMonth() + 1;
@@ -28,53 +29,40 @@ router.get("/:user_id", function(req, res) {
 				month = "0" + month;
 			}
 			var createdAt = year + "/" + month + "/" + date;
-			var allReviews = [];
-			var avgRating = 0;
-
-			/*async.each(foundUser.services, function(service) {
-				Service.findById(service).populate("reviews").exec(function(err, foundService) {
-					if(err) {
-						console.log(err);
-					} else {
-						console.log("Hellooo")
-						for(var review of foundService.reviews) {
-							allReviews.push(review.rating);
-						}
+			//find all services created by this user, get reviews and calculate overall rating
+			Service.find({"author.id": foundUser._id })
+			.populate("reviews")
+			.exec(function(err, foundServices) {
+				var populatedReviews = [];
+				var grandTotalReviews = 0;
+				var grandTotalRating = 0;
+				for(var service of foundServices) {
+					if(!isNaN(service.totalReviews)) {
+						grandTotalReviews += service.totalReviews;
 					}
-				});
-			});*/
-
-			/*for(var service of foundUser.services) {
-				Service.findById(service).populate("reviews").exec(function(err, foundService) {
-					if(err) {
-						console.log(err);
-					} else {
-						for(var review of foundService.reviews) {
-							allReviews.push(review.rating);
-						}
+					if(!isNaN(service.totalRating)) {
+						grandTotalRating += service.totalRating;
 					}
-				});
-			}*/
-			if(allReviews) {
-				avgRating = allReviews.reduce((total, rating) => {
-					total += rating
-				}, 0) * allReviews.length;
-			}
-			// problem is render happens before rating gets handled
-			res.render("users/show",
-				{
-					user: foundUser,
-					createdAt: createdAt,
-					rating: avgRating,
-					csrfToken: req.csrfToken()
+					for(var review of service.reviews) {
+						populatedReviews.push(review);
+					}
 				}
-			);
+				var overallRating = grandTotalRating / grandTotalReviews;
+				res.render("users/show",
+					{
+						user: foundUser,
+						createdAt: createdAt,
+						rating: overallRating,
+						reviews: populatedReviews,
+						csrfToken: req.csrfToken()
+					}
+				);
+			});
 		}
 	});
 });
 
 // EDIT
-// ---create checkUserOwnership middleware
 router.get("/:user_id/edit", checkUserOwnership, function(req, res) {
 	User.findById(req.params.user_id, function(err, foundUser) {
 		if(err) {
@@ -87,7 +75,6 @@ router.get("/:user_id/edit", checkUserOwnership, function(req, res) {
 });
 
 // UPDATE
-// ---create checkUserOwnership middleware
 router.put("/:user_id", checkUserOwnership, function(req, res) {
 	var editedProfile = {
 		about_profile: req.body.about_profile,
@@ -110,6 +97,7 @@ router.put("/:user_id", checkUserOwnership, function(req, res) {
 
 // DESTROY USER ACCOUNT
 // ---create checkUserOwnership middleware
+// ---make a confirmation button middleware first. then apply to service and review deleting.
 /*router.delete("/:id", checkUserOwnership, function(req, res) {
 	User.findByIdAndRemove(req.params.id, function(err) {
 		if(err) {
