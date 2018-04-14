@@ -25,6 +25,10 @@ p {
 	font-size: 1.2rem;
 }
 
+tr:last-child {
+	border: none;
+}
+
 .nav-wrapper a {
 	color: #ef6c00;
 }
@@ -104,6 +108,15 @@ p {
 	list-style-type: circle !important;
 	list-style-position: inside;
 	font-size: 1.2rem;
+}
+
+#service h1,
+#service h2,
+#service h3,
+#service h4,
+#service h5,
+#service h6{
+	font-weight: 600 !important;
 }
 
 .subheader {
