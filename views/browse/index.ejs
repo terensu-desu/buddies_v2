@@ -3,16 +3,16 @@
 <div class="card-panel">
 	<div class="row">
 		<div class="col s3">
-			<h4>Categories</h4>
+			<h4>カテゴリー</h4>
 		</div>
 		<div class="col s3">
 			<h4>Buddies</h4>
 		</div>
 		<div class="col s3">
-			<h4>Life</h4>
+			<h4>生活</h4>
 		</div>
 		<div class="col s3">
-			<h4>Events</h4>
+			<h4>イベント</h4>
 		</div>
 	</div>
 	<hr/>
@@ -25,13 +25,13 @@
 						<a href="#"><%= category %></a>
 					</li>
 				<% }) %>
-				<h5>Life</h5>
+				<h5>生活</h5>
 				<% categories.life.map(function(category) { %>
 					<li>
 						<a href="#"><%= category %></a>
 					</li>
 				<% }) %>
-				<h5>Events</h5>
+				<h5>イベント</h5>
 				<% categories.events.map(function(category) { %>
 					<li>
 						<a href="#"><%= category %></a>
@@ -50,7 +50,30 @@
 						<p class="black-text"><%= service.headline %> - <%= service.location %></p>
 						<span class="card-title truncate"><%= service.title %></span>
 						<p class="black-text">¥<%= service.price %> per person</p>
-						<p class="black-text"><%= service.rating || "RATING HERE" %></p>
+						<p class="color-accent">
+			      	<% if(service.totalRating / service.totalReviews >= 1) { %>
+			      	<% for(var i = 1; i <= service.totalRating / service.totalReviews; i++) { %>
+			      	<i class="fas fa-star color-accent"></i>
+			      	<% } %>
+			      	<% if(service.totalRating / service.totalReviews >= 4 && service.totalRating / service.totalReviews != 5) { %>
+			      	<i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 3 && service.totalRating / service.totalReviews != 4) { %>
+			      	<i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 2 && service.totalRating / service.totalReviews != 3) { %>
+			      	<i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 1 && service.totalRating / service.totalReviews != 2) { %>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <% } %>
+		      	<% } else { %>
+							<br>
+		      	<% } %>
+		      	</p>
 					</div>
 				</a>
 			</div>
@@ -68,7 +91,30 @@
 						<p class="black-text"><%= service.headline %> - <%= service.location %></p>
 						<span class="card-title truncate"><%= service.title %></span>
 						<p class="black-text">¥<%= service.price %> per person</p>
-						<p class="black-text"><%= service.rating || "RATING HERE" %></p>
+						<p class="color-accent">
+			      	<% if(service.totalRating / service.totalReviews >= 1) { %>
+			      	<% for(var i = 1; i <= service.totalRating / service.totalReviews; i++) { %>
+			      	<i class="fas fa-star color-accent"></i>
+			      	<% } %>
+			      	<% if(service.totalRating / service.totalReviews >= 4 && service.totalRating / service.totalReviews != 5) { %>
+			      	<i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 3 && service.totalRating / service.totalReviews != 4) { %>
+			      	<i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 2 && service.totalRating / service.totalReviews != 3) { %>
+			      	<i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 1 && service.totalRating / service.totalReviews != 2) { %>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <% } %>
+		      	<% } else { %>
+							<br>
+		      	<% } %>
+		      	</p>
 					</div>
 				</a>
 			</div>
@@ -86,7 +132,30 @@
 						<p class="black-text"><%= service.headline %> - <%= service.location %></p>
 						<span class="card-title truncate"><%= service.title %></span>
 						<p class="black-text">¥<%= service.price %> per person</p>
-						<p class="black-text"><%= service.rating || "RATING HERE" %></p>
+						<p class="color-accent">
+			      	<% if(service.totalRating / service.totalReviews >= 1) { %>
+			      	<% for(var i = 1; i <= service.totalRating / service.totalReviews; i++) { %>
+			      	<i class="fas fa-star color-accent"></i>
+			      	<% } %>
+			      	<% if(service.totalRating / service.totalReviews >= 4 && service.totalRating / service.totalReviews != 5) { %>
+			      	<i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 3 && service.totalRating / service.totalReviews != 4) { %>
+			      	<i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 2 && service.totalRating / service.totalReviews != 3) { %>
+			      	<i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+			      	<% } else if(service.totalRating / service.totalReviews >= 1 && service.totalRating / service.totalReviews != 2) { %>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <% } %>
+		      	<% } else { %>
+							<br>
+		      	<% } %>
+		      	</p>
 					</div>
 				</a>
 			</div>
