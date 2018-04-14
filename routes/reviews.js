@@ -39,12 +39,13 @@ router.post("/", isLoggedIn, function(req, res) {
 				},
 				date: new Date()
 			}
-			review.date = review.date.toLocaleString("ja-JP", {year: "numeric", month: "long", day: "numeric"});
 			Review.create(review, function(err, newReview) {
 				if(err) {
 					req.flash("negative", "Sorry, there was an error processing your request.");
 					res.redirect("back");
 				} else {
+					newReview.date = newReview.date.toLocaleString("ja-JP", {year: "numeric", month: "long", day: "numeric"});
+					console.log(newReview.date);
 					newReview.save();
 					foundService.reviews.push(newReview._id);
 					if(isNaN(foundService.totalReviews)) {
