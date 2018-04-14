@@ -84,16 +84,16 @@
                     <% for(var i = 1; i <= rating; i++) { %>
                     <i class="fas fa-star color-accent"></i>
                     <% } %>
-                    <% if(rating >= 4 && rating != 5) { %>
+                    <% if(rating >= 4 && rating < 5) { %>
                     <i class="far fa-star"></i>
-                    <% } else if(rating >= 3 && rating != 4) { %>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <% } else if(rating >= 2 && rating != 3) { %>
+                    <% } else if(rating >= 3 && rating < 4) { %>
                     <i class="far fa-star"></i>
                     <i class="far fa-star"></i>
+                    <% } else if(rating >= 2 && rating < 3) { %>
                     <i class="far fa-star"></i>
-                    <% } else if(rating >= 1 && rating != 2) { %>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <% } else if(rating >= 1 && rating < 2) { %>
                     <i class="far fa-star"></i>
                     <i class="far fa-star"></i>
                     <i class="far fa-star"></i>
